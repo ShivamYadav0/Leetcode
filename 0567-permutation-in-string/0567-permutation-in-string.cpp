@@ -9,7 +9,7 @@ public:
         
         for(;i<s1.length();i++){np[s2[i]]++;}
         bool f=1;
-        for(auto [x,y]:mp)if(y!=np[x])f=0;
+        for(auto [x,y]:mp)if(y!=np[x]){f=0;break;}
         if(f)return true;
         for(;i<s2.length();i++){
             
@@ -17,8 +17,8 @@ public:
             np[s2[i]]++;
             k++;
            f=1;
-        for(auto [x,y]:mp)if(y!=np[x])f=0;
-        if(f)return true;
+         for(auto [x,y]:mp)if(y!=np[x]){f=0;break;}
+          if(f)return true;
             
         }
         return false;
