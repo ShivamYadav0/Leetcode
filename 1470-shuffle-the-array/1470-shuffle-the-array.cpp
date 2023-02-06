@@ -1,15 +1,16 @@
 class Solution {
 public:
     vector<int> shuffle(vector<int>& nums, int n) {
-        vector<int>v(2*n);
-        int i=0,j=n,k=0;
         
+        int i=0,j=n,k=0;
+        int  mx=1e3+1;
         while(i<2*n){
             
-            if(i%2==0)v[i]=nums[k++];
-            else v[i]=nums[j++];
+            if(i%2==0)nums[i]=(nums[k++]%mx)*mx+nums[i];
+            else nums[i]=(nums[j++]%mx)*mx+nums[i];
             i++;
         }
-        return v;
+        for(int i=0;i<2*n;i++)nums[i]/=mx;
+        return nums;
     }
 };
