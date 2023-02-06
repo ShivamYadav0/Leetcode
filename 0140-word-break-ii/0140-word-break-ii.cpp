@@ -16,6 +16,7 @@ public:
         }
         reverse(v.begin(),v.end());
         if(mp[v]>0){
+       // char ch=(i<s.length()?' ':);
         rec(s,i+1,t+(i+1<s.length()?" ":""),1);
         }
         rec(s,i+1,t,0);
