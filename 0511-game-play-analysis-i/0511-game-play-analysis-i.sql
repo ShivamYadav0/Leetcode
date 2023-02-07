@@ -1,3 +1,5 @@
-# Write your MySQL query statement below
-select a.player_id , a.event_date as first_login from Activity a
-where a.event_date=(select min(b.event_date) from Activity b where a.player_id=b.player_id);
+SELECT 
+    player_id,
+    MIN(event_date) as first_login
+FROM Activity
+GROUP BY player_id;
