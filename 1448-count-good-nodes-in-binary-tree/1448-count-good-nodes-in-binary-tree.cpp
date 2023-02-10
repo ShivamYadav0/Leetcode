@@ -11,17 +11,17 @@
  */
 class Solution {
 public:
-    int ans=0;
-    void rec(TreeNode*rt,int mx){
+    
+    void rec(TreeNode*rt,int mx,int &ans){
         if(!rt)return;
         if(rt->val>=mx)ans++;
-        rec(rt->left,max(mx,rt->val));
-        rec(rt->right,max(mx,rt->val));
+        rec(rt->left,max(mx,rt->val),ans);
+        rec(rt->right,max(mx,rt->val),ans);
         
     }
     int goodNodes(TreeNode* root) {
-        
-        rec(root,-1e5);
+        int ans=0;
+        rec(root,-1e5,ans);
         return ans;
     }
 };
