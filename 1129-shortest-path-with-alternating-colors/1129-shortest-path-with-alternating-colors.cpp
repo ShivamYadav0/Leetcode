@@ -29,11 +29,11 @@ public:
             q.pop();
             for(auto x:g[m]){
                 if(f!=x.second&&
- ((x.second==0&&dis[m]+1<vis[x.first])||(x.second==1&&vis[m]+1<dis[x.first]))){
+ ((x.second==0&&c+1<vis[x.first])||(x.second==1&&c+1<dis[x.first]))){
                     if(x.second==0)
-                        vis[x.first]=dis[m]+1;
+                        vis[x.first]=c+1;
                     else
-                        dis[x.first]=vis[m]+1;
+                        dis[x.first]=c+1;
             
                     q.push({x.first,x.second,c+1});
                 }
