@@ -4,8 +4,12 @@ public:
         int i=0,j=mat.size()-1;
         int ans=0;
         while(i<mat.size()){
-            ans+=mat[i][i]+(i!=j?mat[i][j]:0);
+            ans+=mat[i][i];
+            if(i!=j){
+              ans+= mat[i][j];
+            }
             i++;j--;
+            
         }
         return ans;
     }
