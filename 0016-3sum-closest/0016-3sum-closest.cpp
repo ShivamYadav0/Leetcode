@@ -6,7 +6,7 @@ public:
         vector<int>ans;
         int dif=INT_MAX,t=0;
         int j,k;
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n-2;i++){
             j=i+1,k=n-1;
             
             while(j<k){
