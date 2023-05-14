@@ -9,7 +9,7 @@ public:
         if (dp[mask] != -1)
             return dp[mask];
       
-       int ans=0;
+      // int ans=0;
         for (int j = 0; j < v.size(); j++)
         {
             if(mask&(1<<j))
@@ -20,13 +20,13 @@ public:
                 {
                   int  nm = mask | (1 << j);
                     nm |= (1 << k);
-                    int s= rec( nm, c + 1, v) + c * (__gcd(v[j], v[k]));
-                    dp[mask]=max(dp[mask],s);
-                    ans = max(ans,s);
+                     dp[mask]=max( dp[mask],rec( nm, c + 1, v) + c * (__gcd(v[j], v[k])));
+                  
+                   // ans = max(ans,s);
                 }
             }
         }
-        return dp[mask] = ans;
+        return dp[mask] ;
     }
     int maxScore(vector<int> &nums)
     {
