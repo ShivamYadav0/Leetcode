@@ -20,7 +20,9 @@ public:
                 {
                   int  nm = mask | (1 << j);
                     nm |= (1 << k);
-        ans = max(ans, rec( nm, c + 1, v) + c * (__gcd(v[j], v[k])));
+                    int s= rec( nm, c + 1, v) + c * (__gcd(v[j], v[k]));
+                    dp[mask]=max(dp[mask],s);
+                    ans = max(ans,s);
                 }
             }
         }
