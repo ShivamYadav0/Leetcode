@@ -16,7 +16,7 @@ public:
                 continue;
             for (int k = j+1; k < v.size() ;k++)
             {
-                if (!(mask & (1 << k)) && k!=j)
+                if (!(mask & (1 << k)))
                 {
                   int  nm = mask | (1 << j);
                     nm |= (1 << k);
@@ -30,7 +30,7 @@ public:
     }
     int maxScore(vector<int> &nums)
     {
-        dp.resize((1 << 16), -1);
+        dp.resize((1 << 14), -1);
         int mx = 0;
         mx = rec( 0, 1, nums);
         return mx;
