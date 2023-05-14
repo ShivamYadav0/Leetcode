@@ -14,7 +14,7 @@ public:
         {
             if(mask&(1<<j))
                 continue;
-            for (int k = 0; k < v.size() ;k++)
+            for (int k = j+1; k < v.size() ;k++)
             {
                 if (!(mask & (1 << k)) && k!=j)
                 {
