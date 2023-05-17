@@ -1,48 +1,30 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+#define lt ListNode
 class Solution {
 public:
-    
-    int ans(ListNode *hd){
-        int l=0;
-        ListNode * head=hd;
-        while(head!=NULL){
-            l++;
-            head=head->next;
+    Solution(){
+        ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+    }
+    lt* rev(lt* head){
+        lt *prev = NULL, *curr = head, *tmp = NULL;
+        while(curr){
+            tmp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = tmp;
         }
-        head=hd;
-        l/=2;
-        
-        ListNode *p,*c,*n;
-        p=hd;
-        c=hd->next;
-        n=c->next;
-        p->next=NULL;
-        while(c&&l>1){
-            c->next=p;
-            p=c;
-            c=n;
-            n=n->next;
-            l--;
-        }
-        int mx=0;
-        while(p!=NULL){
-            mx=max(p->val+c->val,mx);
-            p=p->next;
-            c=c->next;
-        }
-        return mx;
+        return prev;
     }
     int pairSum(ListNode* head) {
-        return ans(head);
-        
+        lt *tmp = NULL, *slow = head, *fast = head;
+        while(fast and fast->next) tmp = slow, slow = slow->next, fast = fast->next->next;
+        tmp->next = NULL;
+        lt *t1 = head, *t2 = rev(slow);
+        int maxi = INT_MIN;
+        while(t1 and t2){
+            maxi = max(maxi, t1->val + t2->val);
+            t1 = t1->next;
+            t2 = t2->next;
+        }
+        return maxi;
     }
 };
