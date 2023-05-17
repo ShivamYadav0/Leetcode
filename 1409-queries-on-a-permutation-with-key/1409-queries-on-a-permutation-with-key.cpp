@@ -14,7 +14,7 @@ public:
         return s;
     }
     vector<int> processQueries(vector<int>& queries, int m) {
-        bit.resize(2*m+2,0);
+        bit.resize(2*m+1,0);
         int n=m;
         for(int i=1;i<=n;i++)
             update(i,1);
