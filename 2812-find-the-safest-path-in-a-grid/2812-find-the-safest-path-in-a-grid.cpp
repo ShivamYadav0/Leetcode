@@ -59,6 +59,7 @@ public:
            
             if(y.r==n-1&&y.c==n-1){
                 ans=max(ans,y.v);
+                return ans;
             }
             if(y.v<=ans)
                 continue;
