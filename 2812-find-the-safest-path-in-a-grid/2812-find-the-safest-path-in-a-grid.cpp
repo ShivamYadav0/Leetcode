@@ -60,13 +60,15 @@ public:
             if(y.r==n-1&&y.c==n-1){
                 ans=max(ans,y.v);
             }
+            if(y.v<=ans)
+                continue;
             for(int i=0;i<4;i++){
              if(y.r+dx[i]>=n || y.r+dx[i]<0||y.c+dy[i]>=n || y.c+dy[i]<0 || g[y.r+dx[i]][y.c+dy[i]]==-1)continue;
-               
+                if(g[y.r+dx[i]][y.c+dy[i]]>ans){
                     
                     pq.push({y.r+dx[i],y.c+dy[i],min(y.v,g[y.r+dx[i]][y.c+dy[i]])});
                     g[y.r+dx[i]][y.c+dy[i]]=-1;
-                
+                }
             }
         }
         
