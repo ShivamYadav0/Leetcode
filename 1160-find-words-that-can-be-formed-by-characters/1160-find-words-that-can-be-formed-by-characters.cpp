@@ -11,12 +11,13 @@ public:
         unordered_map<char,int>np;
         for(auto x:words){
             np.clear();
-            for(auto y:x)np[y]++;
+          
             
             if(np.size()<=mp.size()) {
                 bool check=true;
-                for(auto [w,z]:np){
-                    if(mp[w]<z) check=false;
+                for(auto y:x){
+                    np[y]++;
+                    if(mp[y]<np[y]){ check=false; break;}
                 }
                 if(check)s+=x.length();
             }
