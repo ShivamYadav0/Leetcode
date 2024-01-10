@@ -42,11 +42,7 @@ public:
     int amountOfTime(TreeNode* root, int start) {
         if(!root) return 0;
         track(root,start);
-        /*for(auto x:path){
-            cout<<x->val<<" ";
-            
-        }
-        cout<<endl;*/
+        
         find(root,1,path.size()-1);
         return mx-1;
         
