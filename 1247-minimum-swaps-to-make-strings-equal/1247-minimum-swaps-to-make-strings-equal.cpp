@@ -6,7 +6,6 @@ class Solution {
       for (auto x: s1) x1 += (x == 'x');
       for (auto x: s2) x2 += (x == 'x');
 
-      int count = 0;
       if ((x1 + x2)&1) return -1;
       int countXNotEqual=0,countYNotEqual=0;
         
@@ -18,7 +17,6 @@ class Solution {
       }
        return countXNotEqual/2 + countYNotEqual/2 + countXNotEqual%2 + countYNotEqual%2;
      
-
     }
 
 };
