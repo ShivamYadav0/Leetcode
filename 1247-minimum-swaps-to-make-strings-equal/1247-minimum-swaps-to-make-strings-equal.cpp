@@ -8,27 +8,16 @@ class Solution {
 
       int count = 0;
       if ((x1 + x2)&1) return -1;
-      for (int i = 0; i < s1.length(); i++) {
-        int indexToSwap = -1;
+      int countXNotEqual=0,countYNotEqual=0;
         
-        if (s1[i] != s2[i]) {
-          for (int j = i + 1; j < s1.length(); j++) {
-            if (s1[i] == s1[j]) {
-              indexToSwap = j;
-              if (s1[j] != s2[j]) break;
-            }
-
-          }
-          if (indexToSwap == -1) {
-            swap(s1[i], s2[i]);
-            i--;
-          } else
-            swap(s2[i], s1[indexToSwap]);
-          count++;
-
-        }
+      for (int i = 0; i < s1.length(); i++) {
+           if (s1[i] != s2[i]) {
+               countXNotEqual+=(s1[i]=='x');
+               countYNotEqual+=(s1[i]=='y');
+           }
       }
-      return count;
+       return countXNotEqual/2 + countYNotEqual/2 + countXNotEqual%2 + countYNotEqual%2;
+     
 
     }
 
