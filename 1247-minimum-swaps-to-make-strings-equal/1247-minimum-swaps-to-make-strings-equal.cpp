@@ -7,7 +7,7 @@ class Solution {
       for (auto x: s2) x2 += (x == 'x');
 
       int count = 0;
-      if ((x1 + x2) % 2 != 0) return -1;
+      if ((x1 + x2)&1) return -1;
       for (int i = 0; i < s1.length(); i++) {
         int indexToSwap = -1;
         
