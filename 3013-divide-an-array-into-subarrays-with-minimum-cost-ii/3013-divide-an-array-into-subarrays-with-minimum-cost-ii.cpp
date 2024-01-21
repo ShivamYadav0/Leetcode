@@ -1,14 +1,6 @@
 class Solution {
  public:
-  void print(set<pair<int, int>> s, int k) {
-    int sm = 0;
-    for (auto it = s.begin(); it != s.end(); it++) {
-      if (k > 0) sm += (*it).first;
-      k--;
-      cout << "{" << (*it).first << " " << (*it).second << "} ,";
-    }
-    cout << sm << "|" << endl;
-  }
+
   long long minimumCost(vector<int>& nums, int k, int dist) {
     set<pair<int, int>> ms;
     long long s = nums[0];
@@ -86,5 +78,15 @@ class Solution {
     }
 
     return s;
+  }
+  // To debug the code
+    void print(set<pair<int, int>> s, int k) {
+    int sm = 0;
+    for (auto it = s.begin(); it != s.end(); it++) {
+      if (k > 0) sm += (*it).first;
+      k--;
+      cout << "{" << (*it).first << " " << (*it).second << "} ,";
+    }
+    cout << sm << "|" << endl;
   }
 };
