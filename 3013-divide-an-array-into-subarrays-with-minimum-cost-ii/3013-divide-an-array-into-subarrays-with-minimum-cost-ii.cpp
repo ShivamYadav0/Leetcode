@@ -3,13 +3,12 @@ class Solution {
 
   long long minimumCost(vector<int>& nums, int k, int dist) {
     // first element will be included always as 1st segment starts from it
-      
     long long s = nums[0];
     
     // now b/w second and last segment diff will be at most dist
     // so now question becomes sliding window type 
     // optimal solution is to choose min sum k-1 elements across the windows 
-    // now tc accetable is o(n*logn) and we have choose first k-1 elements from window and add elemts into window such that their order remains same so after a lot of brainstorming set is best option
+    // now tc accetable is o(n*logn) and we have to choose first k-1 elements from window and add or remove elements from  window in further steps  such that their order remains same so after a lot of brainstorming set is best option
     set<pair<int, int>> ms;
     k--;
     for (int i = 1; i <= dist + 1; i++) {
