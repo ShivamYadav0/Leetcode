@@ -18,52 +18,40 @@ public:
         }
         cout<<endl;
     }
-    vector<ListNode *> reverse(ListNode * from, ListNode*to){
-        if(!from || !to)return {from,from};
-        ListNode * cur,*prev,*next;
-        prev=from;
-        cur=from->next;
-        if(!cur){
-            return {from,from};
-        }
-        
-        next=cur->next;
-        while(cur!=NULL){
-            cur->next=prev;
-            prev=cur;
-            cur=next;
-            if(prev==to)break;
-            if(next)
-            next=next->next;
-        }
-       // from->next=NULL;
-      //  print(to);
-        return {to,from};
-    }
+    
     ListNode* reverseKGroup(ListNode* head, int k) {
         if(k==1)return head;
-        ListNode *cur=head,*pit=head,*next,*prev=NULL;
-        ListNode *newHead=NULL;
-        int i=1;
-        while(cur!=NULL){
-            if(i==k){
-                next=cur->next;
-              
-                reverse(pit,cur);
-                if(prev)prev->next=cur;
-                prev=pit;
-                if(!newHead)newHead=cur;
-                cur=next;
-                pit->next=cur;
-                pit=cur;
-              
-                i=0;
-            }
-            else cur=cur->next;
-            i++;
-        }
-       // reverse(head,head->next->next);
+        ListNode *cur=head,*next,*prev=NULL;
        
-        return newHead;
+        int ln=0;
+        while(cur!=NULL){
+            ln++;
+            cur=cur->next;
+        }
+        ln/=k;
+      
+        ListNode *dum=new ListNode(-1);
+        dum->next=head;
+        cur=dum;
+        next=dum;
+        prev=dum;
+        while(ln >0){
+            
+          cur=prev->next;
+          next=cur->next;
+          for(int i=1;i<k;i++){
+              cur->next=next->next;
+              next->next=prev->next;
+              prev->next=next;
+              next=cur->next;
+              
+              
+          }
+            prev=cur;
+            ln--;
+        }
+      
+       
+        return dum->next;
     }
 };
