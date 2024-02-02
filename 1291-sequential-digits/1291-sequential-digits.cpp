@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[12][2][11];
+   
     int lll;
     vector<int>ans;
     int rec(string &s,int i,int p,bool f,int num){
@@ -21,7 +21,7 @@ public:
         return ans;
     }
     vector<int> sequentialDigits(int low, int high) {
-        memset(dp,-1,sizeof(dp));
+       
         string a=to_string(high);
         string b=to_string(low-1);
         lll=low;
