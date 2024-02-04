@@ -8,14 +8,12 @@ public:
     }
     string minWindow(string s, string t) {
         
-        unordered_map<char,int>mp;
-        int c=0;
-        for(auto x:t)mp[x]++,c++;
-       
+        unordered_map<char,int>u;
         vector<int>ans;
-         unordered_map<char,int>u=mp;
-        int i=0,j=0;
+        int i=0,j=0,c=0;;
     
+        for(auto x:t)u[x]++,c++;
+       
         while(i<s.length()){
             
             if(u.find(s[i])!=u.end()){
@@ -31,9 +29,6 @@ public:
                 }
                 if(ans.empty()||i-j<ans[1]-ans[0])
                 ans={j,i};
-            
-                // print(u);
-               // cout<<j<<endl;
             }
             i++;
             
