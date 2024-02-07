@@ -6,7 +6,7 @@ public:
     vector<int>lps(n.size());
     int j = 0;
     for (int i = 1; i < n.size(); i++) {
-
+          j=lps[i-1];
       while (j > 0 && n[i] != n[j])
         j = lps[j - 1];
 
