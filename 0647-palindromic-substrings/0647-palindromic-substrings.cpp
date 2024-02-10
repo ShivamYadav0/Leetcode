@@ -1,13 +1,13 @@
 class Solution {
 public:
     int check(string&s,int i,int j){
-        int c=0;
+       
         while(i>=0&&j<s.length()&&s[i]==s[j]){
             i--;
             j++;
-            c++;
+            
         }
-        return c;
+        return (j-i)>>1;
     }
     int countSubstrings(string s) {
         int ans=0;
