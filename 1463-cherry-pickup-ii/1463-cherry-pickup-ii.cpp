@@ -22,7 +22,7 @@ public:
         }
 
         int ans = vl;
-        vector<int>calls;
+      
         for (auto& di1 : dir) {
             int ni = i + 1;
             int nj1 = j1 + di1[1];
