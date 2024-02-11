@@ -23,23 +23,21 @@ public:
 
         int ans = vl;
         vector<int>calls;
-        for (auto di1 : dir) {
+        for (auto& di1 : dir) {
             int ni1 = i + 1;
             int nj1 = j1 + di1[1];
             if (isValid(ni1, nj1)) {
-                for (auto di2 : dir) {
+                for (auto &di2 : dir) {
 
                     int nj2 = j2 + di2[1];
                     if (isValid(ni1, nj2)) {
-                        calls.push_back(rec(gr,ni1, nj1, nj2));
+                         ans = max(ans,rec(gr,ni1, nj1, nj2)+vl);
                     }
                 }
 
             }
         }
-        for (auto x : calls) {
-            ans = max(ans, x + vl);
-        }
+      
         return  dp[i][j1][j2] = ans;
     }
     int cherryPickup(vector<vector<int>>& gr) {
