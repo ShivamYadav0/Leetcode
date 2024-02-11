@@ -5,7 +5,7 @@ public:
     int dp[70][70][70];
     int dir[3][2] = {{1, 1}, {1, 0}, { 1, -1}};
     bool isValid(int x, int y) {
-        if (x < 0 || y < 0 || x >= n || y >= m)return false;
+        if (y < 0 || x >= n || y >= m)return false;
         return true;
     }
     int rec(vector<vector<int>>&gr, int i, int j1, int j2) {
