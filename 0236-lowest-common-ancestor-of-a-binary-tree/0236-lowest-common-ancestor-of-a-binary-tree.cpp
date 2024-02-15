@@ -15,29 +15,18 @@ public:
         if(!rt){
            return NULL;
         }
+        if(rt==p||rt==q) return rt;
         TreeNode *a=rec(rt->left,p,q);
         TreeNode *b=rec(rt->right,p,q);
        
-       if(rt==p){
-           if(!a)
-           a=rt;
-           else if(!b)b=rt;
-       }
-     if(rt==q){
-               if(!a)
-           a=rt;
-           else if(!b)b=rt;
-        }
-        if(a||b){
-            if(!lca&&a&&b)
-            lca=rt;
-            return rt;
-        }
+       if(a&&b) return rt;
+        if(a)return a;
+        if(b)return b;
         return NULL;
     }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         lca=NULL;
-         rec(root,p,q);
+        lca= rec(root,p,q);
         return lca;
     }
 };
