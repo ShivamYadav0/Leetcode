@@ -9,8 +9,7 @@
  */
 class Solution {
 public:
-    int lim=2;
-    TreeNode *lca;
+  
     TreeNode* rec(TreeNode *rt,TreeNode *p,TreeNode *q){
         if(!rt){
            return NULL;
@@ -25,8 +24,7 @@ public:
         return NULL;
     }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        lca=NULL;
-        lca= rec(root,p,q);
-        return lca;
+       
+        return  rec(root,p,q);
     }
 };
