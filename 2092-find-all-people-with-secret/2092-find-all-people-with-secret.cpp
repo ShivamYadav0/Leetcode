@@ -20,7 +20,7 @@ public:
             auto c = q.front();
             q.pop();
 
-            for (auto x : g[c.v]) {
+            for (auto &x : g[c.v]) {
                 if (x.w >= c.w && dis[x.v] > x.w) {
                     q.push({x.v, x.w});
                     dis[x.v] = x.w;
