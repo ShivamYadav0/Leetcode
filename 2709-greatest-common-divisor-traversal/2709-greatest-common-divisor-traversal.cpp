@@ -1,57 +1,76 @@
-class Solution {
-public:
-    unordered_map<int,vector<int>>mp1;
-    unordered_map<int,vector<int>>mp2;
-    unordered_map<int,int>vis1;
-    unordered_map<int,int>vis2;
-    void dfs(int id,bool flag){
-        
-       vis1[id]=1;
-        for(auto x:mp1[id]){
-            if(vis2[x]>0)continue;
-            vis2[x]=1;
-            for(auto y:mp2[x]){
-                if(vis1[y]>0)continue;
-                dfs(y,flag);
-            }
+// <editor-fold defaultstate="collapsed" desc="#define OUT(...)">
+#ifndef OUT
+#define OUT(...)
+#endif
+// </editor-fold>
+
+const int N = 1e5 + 10;
+//const int N = 400;
+int min_factor[N];
+
+const auto prime_count = [] {
+    vector<int> v;
+    v.reserve(9593);
+    for (int i = 2; i < N; ++i) {
+        if (!min_factor[i]) min_factor[i] = i, v.push_back(i);
+        for (int x: v) {
+            int y = x * i;
+            if (y >= N) break;
+            min_factor[y] = x;
+            if (i % x == 0) break;
         }
     }
-    bool canTraverseAllPairs(vector<int>& nums) {
-        int n=nums.size();
-        sort(nums.begin(),nums.end());
-        
-        if(nums.size()==1)return true;
-        if(nums[0]==1)return false;
-        for(int j=0;j<n;j++){
-            //if(mp[])
-            int x=nums[j];
-            //if(mp2[x].size()>0)continue;
-            for(int i=2;i*i<=x;i++){  
-                if(x%i==0){
-                    
-                    mp1[j].push_back(i);
-                    mp2[i].push_back(j);
-                    while(x>1&&x%i==0)x/=i;
-                   
-                }
-            }
-            if(x>1){
-                 mp2[x].push_back(j);
-                 mp1[j].push_back(x);
+    return v.size();
+}();
+
+const vector<int> &split(int x) {
+    static vector<int> v;
+    v.clear();
+    while (x > 1) {
+        int y = min_factor[x];
+        v.push_back(y);
+        while ((x /= y) % y == 0);
+    }
+    return v;
+}
+
+int father[N];
+
+class DisjointSet {
+public:
+    explicit DisjointSet(int n) {
+        memset(father, -1, n * sizeof father[0]);
+    }
+
+    int getf(int x) { // NOLINT(misc-no-recursion)
+        int &y = father[x];
+        if (y < 0) return x;
+        return y = getf(y);
+    }
+
+    bool merge(int x, int y) {
+        x = getf(x), y = getf(y);
+        if (x == y) return false;
+        father[x] = y;
+        return true;
+    }
+};
+
+class Solution {
+public:
+    static bool canTraverseAllPairs(const vector<int> &nums) {
+        int n = (int) nums.size();
+        if (n < 2) return true;
+        vector<int> mp(1 + *max_element(nums.begin(), nums.end()));
+        DisjointSet ds(n);
+        int c = 1;
+        for (int i = 0; i < n; ++i) {
+            for (int x: split(nums[i])) {
+                int &u = mp[x];
+                if (!u) u = i + 1;
+                else if (ds.merge(u - 1, i)) ++c;
             }
         }
-    
-        int src=nums[n-1];
-        dfs(0,0);
-        bool flag=1;
-        int i=0;
-        for(auto x:nums){
-            if(vis1[i++]>0){ 
-            }
-            else 
-            flag=0;
-        }
-        
-        return flag;
+        return c == n;
     }
 };
