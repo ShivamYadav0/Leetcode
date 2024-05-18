@@ -13,19 +13,18 @@ class Solution {
 public:
     int ans=0;
     void rec(TreeNode *rt,TreeNode *pr,unordered_map<TreeNode*,int>&mp){
-        if(!rt||mp[rt])return ;
+        if(!rt)return ;
       
        
         
          rec(rt->left,rt,mp);
          rec(rt->right,rt,mp);
-         if(mp[rt->left]&&mp[rt->right]){
+        
          
                 pr->val+=(rt->val-1);
                 ans+=abs(rt->val-1);
         
-            mp[rt]++;
-        }
+          
        
         return ;
         
