@@ -12,13 +12,13 @@
 class Solution {
 public:
     int ans=0;
-    int rec(TreeNode *rt,TreeNode *pr,unordered_map<TreeNode*,int>&mp){
-        if(!rt||mp[rt])return 0;
+    void rec(TreeNode *rt,TreeNode *pr,unordered_map<TreeNode*,int>&mp){
+        if(!rt||mp[rt])return ;
       
        
         
-        int a=rec(rt->left,rt,mp);
-        int b=rec(rt->right,rt,mp);
+         rec(rt->left,rt,mp);
+         rec(rt->right,rt,mp);
          if(mp[rt->left]&&mp[rt->right]){
          
                 pr->val+=(rt->val-1);
@@ -27,7 +27,7 @@ public:
             mp[rt]++;
         }
        
-        return a+b;
+        return ;
         
     }
     int distributeCoins(TreeNode* root) {
