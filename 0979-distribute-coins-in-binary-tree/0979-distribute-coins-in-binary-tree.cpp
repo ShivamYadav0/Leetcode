@@ -19,15 +19,11 @@ public:
         
         int a=rec(rt->left,rt,mp);
         int b=rec(rt->right,rt,mp);
-         if((mp[rt->left]&&mp[rt->right])){
-            if(rt->val<1){
+         if(mp[rt->left]&&mp[rt->right]){
+         
                 pr->val+=(rt->val-1);
                 ans+=abs(rt->val-1);
-            }
-            else if(rt->val>1){
-                pr->val+=rt->val-1;
-                ans+=rt->val-1;
-            }
+        
             mp[rt]++;
         }
        
